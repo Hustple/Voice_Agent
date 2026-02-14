@@ -1,0 +1,25 @@
+# LLM - Free
+groq>=0.4.0
+
+# Voice - Free
+openai-whisper>=20231117
+gtts>=2.5.0
+sounddevice>=0.4.6
+soundfile>=0.12.1
+pydub>=0.25.1
+
+# HTTP & Data
+httpx>=0.26.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+python-dotenv>=1.0.0
+
+# Utilities
+PyYAML>=6.0
+loguru>=0.7.0
+rich>=13.7.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-mock>=3.12.0
