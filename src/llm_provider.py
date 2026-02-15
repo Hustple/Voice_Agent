@@ -5,8 +5,8 @@ from groq import Groq
 from loguru import logger
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-from src.exceptions import LLMError
-from src.constants import (
+from exceptions import LLMError
+from constants import (
     GROQ_MODEL, MAX_RETRIES, RETRY_MIN_WAIT, RETRY_MAX_WAIT
 )
 

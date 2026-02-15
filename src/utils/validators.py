@@ -1,7 +1,7 @@
 """Input validation utilities"""
 import re
-from src.exceptions import ValidationError
-from src.constants import MAX_USER_INPUT_LENGTH, MAX_COMPANY_NAME_LENGTH
+from exceptions import ValidationError
+from constants import MAX_USER_INPUT_LENGTH, MAX_COMPANY_NAME_LENGTH
 
 def validate_user_input(text: str) -> str:
     """Validate and sanitize user input"""

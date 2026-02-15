@@ -2,7 +2,7 @@
 import os
 from typing import Any
 from dotenv import load_dotenv
-from src.exceptions import ConfigurationError
+from exceptions import ConfigurationError
 
 class Config:
     """Application configuration with validation"""

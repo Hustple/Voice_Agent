@@ -9,8 +9,8 @@ from loguru import logger
 from pathlib import Path
 import atexit
 
-from src.constants import MAX_RECORDING_DURATION, SAMPLE_RATE
-from src.exceptions import VoiceInputError
+from constants import MAX_RECORDING_DURATION, SAMPLE_RATE
+from exceptions import VoiceInputError
 
 class VoiceHandler:
     """Handle voice input/output with cleanup"""
