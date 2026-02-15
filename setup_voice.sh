@@ -1,3 +1,9 @@
+#!/bin/bash
+
+echo "🎙️ Setting up voice capabilities..."
+
+# Create full voice handler
+cat > src/voice_handler.py << 'VOICEEOF'
 """Voice Handler - Full voice input/output"""
 import whisper
 from gtts import gTTS
@@ -65,3 +71,36 @@ class VoiceHandler:
             logger.info("Audio playback complete")
         except Exception as e:
             logger.error(f"Error: {e}")
+VOICEEOF
+
+echo "✅ Voice handler created!"
+
+# Create simple voice output demo
+cat > test_voice_simple.py << 'TESTEOF'
+#!/usr/bin/env python3
+"""Simple voice output test"""
+from gtts import gTTS
+from pydub import AudioSegment
+from pydub.playback import play
+
+text = "You have 2 overdue invoices, totaling one thousand one hundred dollars."
+print(f"Agent will say: {text}")
+
+tts = gTTS(text=text, lang='en', slow=False)
+tts.save("temp.mp3")
+
+audio = AudioSegment.from_mp3("temp.mp3")
+play(audio)
+
+print("Done!")
+TESTEOF
+
+chmod +x test_voice_simple.py
+
+echo "✅ Setup complete!"
+echo ""
+echo "Next steps:"
+echo "1. Install dependencies: pip install openai-whisper gtts sounddevice soundfile pydub"
+echo "2. Install ffmpeg: brew install ffmpeg"
+echo "3. Test: python test_voice_simple.py"
+
