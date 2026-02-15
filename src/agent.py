@@ -3,22 +3,22 @@ from typing import Optional
 from pydantic import BaseModel
 from loguru import logger
 
-from llm_provider import GroqProvider
-from mcp_client_mock import MockMCPClient
-from utils.formatters import (
+from src.llm_provider import GroqProvider
+from src.mcp_client_mock import MockMCPClient
+from src.utils.formatters import (
     format_currency_for_voice,
     format_email_for_voice, 
     format_date_for_voice
 )
-from utils.validators import (
+from src.utils.validators import (
     validate_user_input,
     validate_company_name,
     validate_email_content
 )
-from prompts.system_prompts import SystemPrompts
-from prompts.templates import EmailTemplates
-from exceptions import ValidationError, LLMError, MCPError
-from constants import MAX_INVOICES_TO_DISPLAY, MAX_TOKENS_INTENT
+from src.prompts.system_prompts import SystemPrompts
+from src.prompts.templates import EmailTemplates
+from src.exceptions import ValidationError, LLMError, MCPError
+from src.constants import MAX_INVOICES_TO_DISPLAY, MAX_TOKENS_INTENT
 
 class Invoice(BaseModel):
     id: str
