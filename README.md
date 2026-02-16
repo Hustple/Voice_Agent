@@ -31,7 +31,7 @@ cd invoice-reminder-agent
 ./scripts/setup.sh
 
 # 3. Configure environment
-cp .env
+cp .env.example .env
 # Edit .env and add your GROQ_API_KEY
 
 # 4. Run the agent
