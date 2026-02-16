@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="invoice-reminder-agent",
+    name="peakflo_project",
     version="0.1.0",
     packages=find_packages(),
     install_requires=[
@@ -19,15 +19,14 @@ setup(
         "rich>=13.7.0",
     ],
     python_requires=">=3.8",
-    author="Your Name",
-    author_email="your.email@example.com",
-    description="Voice-enabled AR automation agent using pfMCP",
+    author="Utkarsh Singh",
+    author_email="utkarsh.workmail.1@gmail.com",
+    description="Voice-enabled AR automation agent using MCP",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/invoice-reminder-agent",
+    url="https://github.com/Hustple/peakflo_project",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
 )
