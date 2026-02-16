@@ -3,7 +3,7 @@
 > AI-powered accounts receivable automation with natural voice interaction
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Groq](https://img.shields.io/badge/LLM-Groq%20Mixtral-orange.svg)](https://groq.com/)
+[![Groq](https://img.shields.io/badge/LLM-Groq%20Llama-orange.svg)](https://groq.com/)
 
 A sophisticated voice-controlled agent for managing overdue invoices, built with production-grade error handling, input validation, and enterprise-ready architecture patterns.
 
@@ -28,7 +28,7 @@ This project demonstrates an end-to-end implementation of a conversational AI ag
 - **Resource Management**: Automatic temp file cleanup and error recovery
 
 ### 🤖 Intelligent Agent
-- **Intent Classification**: Groq Mixtral-8x7b model for understanding commands
+- **Intent Classification**: Groq Llama 3.1 8B model for understanding commands
 - **Entity Extraction**: Automatically identifies company names from natural language
 - **Email Generation**: Creates polite, contextual payment reminders
 - **Conversation Memory**: Maintains dialogue history for context-aware responses
@@ -77,7 +77,7 @@ This project demonstrates an end-to-end implementation of a conversational AI ag
        ▼                  ▼
 ┌──────────────┐   ┌──────────────────┐
 │ GroqProvider │   │  MockMCPClient   │
-│ (Mixtral)    │   │  (Data Layer)    │
+│ (Llama 3.1)  │   │  (Data Layer)    │
 └──────────────┘   └──────────────────┘
 ```
 
@@ -268,7 +268,7 @@ pytest -v
 
 ### LLM Integration
 
-The project uses **Groq** with the **Mixtral-8x7b-32768** model for:
+The project uses **Groq** with the **Llama 3.1 8B Instant** model for:
 
 1. **Intent Classification** (50 tokens, temp=0.1)
    - Classifies user input into: `check_invoices`, `send_reminder`, `help`, `other`
@@ -279,11 +279,12 @@ The project uses **Groq** with the **Mixtral-8x7b-32768** model for:
 3. **Email Generation** (400 tokens, temp=0.7)
    - Creates contextual payment reminders with invoice details
 
-**Why Groq?**
-- ⚡ Ultra-fast inference (sub-second response times)
-- 💰 Generous free tier
-- 🎯 Strong instruction-following with Mixtral
+**Why Groq + Llama 3.1 8B?**
+- ⚡ Ultra-fast inference (560 tokens/second)
+- 💰 100% FREE on developer plan
+- 🎯 Excellent instruction-following capabilities
 - 🔄 Reliable with proper retry logic
+- 📦 131K token context window
 
 ### Error Handling Strategy
 
@@ -358,9 +359,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
+
 ## 🙏 Acknowledgments
 
-- **Groq** for fast, free LLM inference
+- **Groq** for blazing-fast, free LLM inference
+- **Meta AI** for the open-source Llama 3.1 model
 - **OpenAI Whisper** for state-of-the-art speech recognition
 - **Peakflo** for the inspiration to build practical fintech automation
 
