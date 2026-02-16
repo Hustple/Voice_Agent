@@ -3,7 +3,6 @@
 > AI-powered accounts receivable automation with natural voice interaction
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Groq](https://img.shields.io/badge/LLM-Groq%20Mixtral-orange.svg)](https://groq.com/)
 
 A sophisticated voice-controlled agent for managing overdue invoices, built with production-grade error handling, input validation, and enterprise-ready architecture patterns.
