@@ -3,7 +3,8 @@
 > AI-powered accounts receivable automation with natural voice interaction
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Groq](https://img.shields.io/badge/LLM-Groq%20Llama-orange.svg)](https://groq.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Groq](https://img.shields.io/badge/LLM-Groq%20LLaMA 3.1-orange.svg)](https://groq.com/)
 
 A sophisticated voice-controlled agent for managing overdue invoices, built with production-grade error handling, input validation, and enterprise-ready architecture patterns.
 
@@ -28,7 +29,7 @@ This project demonstrates an end-to-end implementation of a conversational AI ag
 - **Resource Management**: Automatic temp file cleanup and error recovery
 
 ### 🤖 Intelligent Agent
-- **Intent Classification**: Groq Llama 3.1 8B model for understanding commands
+- **Intent Classification**: Groq LLaMA 3.1 8B model for understanding commands
 - **Entity Extraction**: Automatically identifies company names from natural language
 - **Email Generation**: Creates polite, contextual payment reminders
 - **Conversation Memory**: Maintains dialogue history for context-aware responses
@@ -77,7 +78,7 @@ This project demonstrates an end-to-end implementation of a conversational AI ag
        ▼                  ▼
 ┌──────────────┐   ┌──────────────────┐
 │ GroqProvider │   │  MockMCPClient   │
-│ (Llama 3.1)  │   │  (Data Layer)    │
+│ (LLaMA 3.1)    │   │  (Data Layer)    │
 └──────────────┘   └──────────────────┘
 ```
 
@@ -103,7 +104,22 @@ This project demonstrates an end-to-end implementation of a conversational AI ag
   ```
 - **Microphone and speakers** for voice interaction
 
+- **Python 3.8+** (tested on 3.10)
+- **ffmpeg** - required for audio processing
+  ```bash
+  # macOS
+  brew install ffmpeg
+  
+  # Ubuntu/Debian
+  sudo apt-get install ffmpeg
+  
+  # Windows
+  # Download from https://ffmpeg.org/download.html
+  ```
+- **Microphone and speakers** for voice interaction
+
 ### Installation
+
 
 ```bash
 # 1. Clone repository
@@ -118,10 +134,32 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # 4. Configure environment
+git clone https://github.com/Hustple/peakflo_project.git
+cd peakflo_project
+
+# 2. Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Configure environment
 cp .env.example .env
+# Edit .env and add your GROQ_API_KEY (see below)
 # Edit .env and add your GROQ_API_KEY (see below)
 ```
 
+### Getting Your Groq API Key (Free)
+
+1. Visit [console.groq.com](https://console.groq.com)
+2. Sign up for a free account
+3. Navigate to API Keys section
+4. Create new API key
+5. Add to `.env` file:
+   ```
+   GROQ_API_KEY=gsk_your_key_here
+   ```
 ### Getting Your Groq API Key (Free)
 
 1. Visit [console.groq.com](https://console.groq.com)
@@ -141,7 +179,56 @@ python src/main.py
 ```
 
 **Text Mode** (for testing without microphone):
+### Running the Agent
+
+**Voice Mode** (recommended):
 ```bash
+python src/main.py
+```
+
+**Text Mode** (for testing without microphone):
+```bash
+python src/main_text.py
+```
+
+---
+
+## 💬 Usage Examples
+
+### Voice Commands
+
+**Check Invoices**:
+- "Check overdue invoices"
+- "Show me past due invoices"
+- "What invoices are overdue?"
+
+**Send Reminders**:
+- "Send reminder to Acme Corp"
+- "Email Beta Industries about their invoice"
+- "Remind XYZ Company about payment"
+
+**Exit**:
+- "Exit"
+- "Quit"
+- "Goodbye"
+
+### Sample Interaction
+
+```
+🎤 Listening...
+👤 You: Check overdue invoices
+
+🤖 Agent: You have 2 overdue invoices, totaling 1100 dollars. 
+Acme Corp, 500 dollars, due February 6, 2024. 
+Beta Industries, 600 dollars, due February 1, 2024.
+
+🎤 Listening...
+👤 You: Send reminder to Acme Corp
+
+🤖 Agent: Email sent to Acme Corp at john at acme dot com.
+```
+
+---
 python src/main_text.py
 ```
 
@@ -246,7 +333,68 @@ PFMCP_BASE_URL=http://localhost  # For future MCP integration
 
 ---
 
+```
+peakflo_project/
+├── src/
+│   ├── agent.py              # Core agent logic with invoice handling
+│   ├── voice_handler.py      # Voice I/O with Whisper & gTTS
+│   ├── llm_provider.py       # Groq API client with retry logic
+│   ├── mcp_client_mock.py    # Mock data layer (Stripe/Gmail simulation)
+│   ├── main.py               # Voice mode entry point
+│   ├── main_text.py          # Text-only mode entry point
+│   ├── constants.py          # Application constants
+│   ├── exceptions.py         # Custom exception hierarchy
+│   │
+│   ├── prompts/
+│   │   ├── system_prompts.py # LLM system prompts
+│   │   └── templates.py      # Email templates
+│   │
+│   └── utils/
+│       ├── config.py         # Configuration management
+│       ├── validators.py     # Input validation & sanitization
+│       ├── formatters.py     # Voice-optimized formatting
+│       └── logger.py         # Structured logging setup
+│
+├── tests/                    # Unit and integration tests
+├── scripts/                  # Setup and deployment scripts
+├── notebooks/                # Jupyter notebooks for experiments
+├── docs/                     # Additional documentation
+├── data/                     # Runtime data (logs, audio files)
+├── requirements.txt          # Python dependencies
+├── .env.example              # Environment variables template
+└── README.md                 # This file
+```
+
+---
+
+## 🔧 Configuration
+
+### Environment Variables
+
+```bash
+# Required
+GROQ_API_KEY=gsk_xxxxx           # Get from console.groq.com
+
+# Optional
+WHISPER_MODEL=base               # Options: tiny, base, small, medium, large
+LOG_LEVEL=INFO                   # Options: DEBUG, INFO, WARNING, ERROR
+PFMCP_BASE_URL=http://localhost  # For future MCP integration
+```
+
+### Whisper Model Selection
+
+| Model  | Size   | Speed    | Accuracy | Use Case                    |
+|--------|--------|----------|----------|-----------------------------|
+| tiny   | 39 MB  | Fastest  | Good     | Testing, low-resource       |
+| base   | 74 MB  | Fast     | Better   | **Recommended default**     |
+| small  | 244 MB | Moderate | Great    | Production quality          |
+| medium | 769 MB | Slow     | Excellent| High accuracy requirement   |
+| large  | 1.5 GB | Slowest  | Best     | Maximum quality             |
+
+---
+
 ## 🧪 Testing
+
 
 ```bash
 # Run all tests
@@ -268,7 +416,7 @@ pytest -v
 
 ### LLM Integration
 
-The project uses **Groq** with the **Llama 3.1 8B Instant** model for:
+The project uses **Groq** with the **LLaMA 3.1 8B-32768** model for:
 
 1. **Intent Classification** (50 tokens, temp=0.1)
    - Classifies user input into: `check_invoices`, `send_reminder`, `help`, `other`
@@ -279,12 +427,11 @@ The project uses **Groq** with the **Llama 3.1 8B Instant** model for:
 3. **Email Generation** (400 tokens, temp=0.7)
    - Creates contextual payment reminders with invoice details
 
-**Why Groq + Llama 3.1 8B?**
-- ⚡ Ultra-fast inference (560 tokens/second)
-- 💰 100% FREE on developer plan
-- 🎯 Excellent instruction-following capabilities
+**Why Groq?**
+- ⚡ Ultra-fast inference (sub-second response times)
+- 💰 Generous free tier
+- 🎯 Strong instruction-following with LLaMA 3.1
 - 🔄 Reliable with proper retry logic
-- 📦 131K token context window
 
 ### Error Handling Strategy
 
@@ -359,11 +506,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-
 ## 🙏 Acknowledgments
 
-- **Groq** for blazing-fast, free LLM inference
-- **Meta AI** for the open-source Llama 3.1 model
+- **Groq** for fast, free LLM inference
 - **OpenAI Whisper** for state-of-the-art speech recognition
 - **Peakflo** for the inspiration to build practical fintech automation
 
