@@ -5,7 +5,6 @@ from utils.config import Config
 from utils.logger import setup_logger
 from rich.console import Console
 
-
 console = Console()
 logger = setup_logger()
 
