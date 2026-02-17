@@ -1,4 +1,3 @@
-"""Invoice Agent - Core logic with validation and error handling"""
 from typing import Optional
 from pydantic import BaseModel
 from loguru import logger
