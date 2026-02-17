@@ -308,5 +308,3 @@ Each layer catches specific exceptions and provides user-friendly error messages
 - **Project**: [Voice_Agent](https://github.com/Hustple/Voice_Agent)
 
 ---
-
-EOF
