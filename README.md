@@ -1,6 +1,3 @@
-cd ~/Desktop/Voice_Agent
-
-cat > README.md << 'EOF'
 # 🎙️ Voice-Enabled Invoice Agent
 
 > AI-powered accounts receivable automation with natural voice interaction
