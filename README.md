@@ -203,11 +203,9 @@ Voice_Agent/
 │       ├── formatters.py     # Voice-optimized formatting
 │       └── logger.py         # Structured logging setup
 │
-├── tests/                    # Unit and integration tests
 ├── scripts/                  # Setup and deployment scripts
-├── docs/                     # Additional documentation
 ├── requirements.txt          # Python dependencies
-├── .env.example              # Environment variables template
+├── .env                    # Environment variables template
 └── README.md                 # This file
 ```
 
